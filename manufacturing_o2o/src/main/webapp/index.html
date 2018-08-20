@@ -1,0 +1,64 @@
+<html>
+
+
+<head>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("my").getElementsByTagName("li")[0].innerHTML="shabi";
+        }
+
+        function fun1(){
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+
+                if (xmlHttp.readyState == 4 && xmlHttp.status ==200) {
+                    var res = xmlHttp.responseText;
+                    document.getElementById("span1").innerHTML = res;
+                }
+
+            }
+
+            xmlHttp.open("GET","/ajaxservlet",false);
+            xmlHttp.send();
+        }
+
+        function fun2(){
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+
+                if (xmlHttp.readyState == 4 && xmlHttp.status ==200) {
+                    var res = xmlHttp.responseText;
+                    document.getElementById("span2").innerHTML = res;
+                }
+
+            }
+
+            xmlHttp.open("GET","/ajaxservlet",true);
+            xmlHttp.send();
+        }
+        
+        function post() {
+            var xmlHttp = new XMLHttpRequest();
+
+            xmlHttp.open("POST","/ajaxservlet",true);
+            xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlHttp.send("name=10");
+        }
+    </script>
+</head>
+
+<body>
+<h2>Hello World!</h2>
+
+<ul id="my">
+    <li>hahahah</li>
+</ul>
+
+<input type="button" value="ajaxx" onclick="fun1()">
+<input type="button" onclick="post()" value="post">
+<input type="button" value="ajaxx" onclick="fun2()">
+<span id="span1"></span>
+<span id="span2"></span>
+
+</body>
+</html>
